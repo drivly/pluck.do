@@ -21,9 +21,10 @@ export default {
     const { hostname, pathname, search } = new URL(req.url)
     if (pathname == '/api') return new Response(JSON.stringify({api}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
     const [args, ...rest] = pathname.split('/')
+    const token = `${hostname}/${args}/`
     const url = req.url.replace(`${hostname}/${args}/`,'')
     const data = await fetch(url, req).then(res => res.json()).catch(({ name, message }) => ({ error: { name, message }}))
     const pluckedData = map(data, [...args.split(',')])
-    return new Response(JSON.stringify({url,data,pluckedData}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
+    return new Response(JSON.stringify({url,token,data,pluckedData}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
   },
 }
