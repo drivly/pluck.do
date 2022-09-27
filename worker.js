@@ -21,7 +21,7 @@ export default {
     const { hostname, pathname, search } = new URL(req.url)
     if (pathname == '/api') return new Response(JSON.stringify({api}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
     const [args, ...rest] = pathname.split('/')
-    const token = `${hostname}/${args}/`
+    const token = `${hostname}/${args}`
     const url = req.url.replace(`${hostname}/${args}/`,'')
     const data = await fetch(url, req).then(res => res.json()).catch(({ name, message }) => ({ error: { name, message }}))
     const pluckedData = map(data, [...args.split(',')])
