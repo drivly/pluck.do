@@ -24,6 +24,6 @@ export default {
     const url = req.url.replace(`${hostname}/${args}/`,'')
     const data = await fetch(url, req).then(res => res.json()).catch(({ name, message }) => ({ error: { name, message }}))
     const pluckedData = map(data, [...args.split(',')])
-    return new Response(JSON.stringify(pluckedData, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
+    return new Response(JSON.stringify({data,pluckedData}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
   },
 }
