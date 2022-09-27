@@ -1,4 +1,4 @@
-import { pluck } from 'lodash-es'
+import { pluck } from 'lodash/pluck'
 
 export const api = {
   icon: '👌',
