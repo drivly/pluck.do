@@ -13,8 +13,7 @@ export const api = {
   site: 'https://pluck.do',
   login: 'https://pluck.do/login',
   signup: 'https://pluck.do/signup',
-  subscribe: 'https://pluck.do/subscribe',
-  repo: 'https://github.com/drivly/subscribe.do',
+  repo: 'https://github.com/drivly/pluck.do',
 }
 
 export default {
