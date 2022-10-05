@@ -1,4 +1,4 @@
-import { map } from 'lodash'
+import { get } from 'lodash'
 
 export const api = {
   icon: '👌',
@@ -20,11 +20,11 @@ export default {
   fetch: async (req, env) => {
     const { hostname, pathname, search } = new URL(req.url)
     if (pathname == '/api') return new Response(JSON.stringify({api}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
-    const [args, ...rest] = pathname.split('/')
+    const [prop, ...rest] = pathname.split('/')
     const token = `${hostname}/${args}`
     const url = req.url.replace(`${hostname}/${args}`,'')
-    const data = await fetch(url, req).then(res => res.json()).catch(({ name, message }) => ({ error: { name, message }}))
-    const pluckedData = map(data, [...args.split(',')])
-    return new Response(JSON.stringify({url,token,data,pluckedData}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
+    const data = await fetch(url, req).then(res => res.json()).catch(({ name, message, stack }) => ({ error: { name, message, stack }}))
+    const pluckedData = get(data, prop)
+    return new Response(JSON.stringify(pluckedData, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
   },
 }
