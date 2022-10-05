@@ -57,7 +57,7 @@ Pluck a Property out of a JSON Document
 
 
 <https://pluck.do/cf.botManagement/api.cf>
-```
+```json
 {
   "corporateProxy": false,
   "staticResource": false,
