@@ -24,7 +24,6 @@ export default {
     const url = 'https://' + rest.join('/')
     const data = await fetch(url, req).then(res => res.json()).catch(({ name, message, stack }) => ({ error: { name, message, stack }}))
     const pluckedData = get(data, prop)
-    console.log({prop,rest,url,data,pluckedData})
     return new Response(JSON.stringify(pluckedData, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
   },
 }
