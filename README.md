@@ -64,6 +64,6 @@ Pluck a Property out of a JSON Document
   "verifiedBot": false,
   "score": 13
 }
-}
+```
 
 
