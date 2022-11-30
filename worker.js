@@ -5,7 +5,7 @@ export const api = {
   name: 'pluck.do',
   description: 'Pluck a Property from a JSON Document',
   url: 'https://pluck.do/api',
-  type: 'https://apis.do/subscriptions',
+  type: 'https://apis.do/data',
   endpoints: {
     pluckFromURL: 'https://pluck.do/:property/:url',
     pluckFromPOST: 'https://pluck.do/:property',
