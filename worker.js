@@ -21,7 +21,7 @@ export default {
     const { hostname, pathname, search } = new URL(req.url)
     if (pathname == '/api') return new Response(JSON.stringify({api}, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
     const [_,prop, ...rest] = pathname.split('/')
-    const url = 'https://' + rest.join('/')
+    const url = 'https://' + rest.join('/') + search
     const data = await fetch(url, req).then(res => res.json()).catch(({ name, message, stack }) => ({ error: { name, message, stack }}))
     const pluckedData = get(data, prop)
     return new Response(JSON.stringify(pluckedData, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' }})
